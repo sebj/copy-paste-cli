@@ -1,0 +1,28 @@
+{
+  "name": "copy-paste-cli",
+  "version": "1.0.0",
+  "description": "A cross-platform command-line tool for copy/paste via the system clipboard.",
+  "license": "MIT",
+  "author": "Sebastian Jachec",
+  "repository": {
+    "type": "git",
+    "url": "sebj/copy-paste-cli",
+  },
+  "keywords": [
+    "cli",
+    "cli-app",
+    "clipboard",
+    "copy-paste",
+    "copy"
+  ],
+  "bin": {
+    "copy-paste": "index.js"
+  },
+  "dependencies": {
+    "copy-paste": "latest",
+    "chalk": "latest",
+    "commander": "latest",
+    "get-stdin": "latest",
+    "log-symbols": "latest"
+  }
+}
