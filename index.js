@@ -20,7 +20,7 @@ cli
 	console.log();
 });
 
-//Copy: Default command if none specified, `c`, or `copy`
+//Copy:`c`, or `copy`
 cli.command('copy [text]')
 .alias('c')
 .description('Copy text to system clipboard')
@@ -34,7 +34,6 @@ cli.command('copy [text]')
 
 	clipboard.copy(toCopy, () => {
 		console.log(chalk.green(symbols.success, "Copied to clipboard"));
-		process.exit(0);
 	});
 });
 

@@ -6,14 +6,16 @@
   "author": "Sebastian Jachec",
   "repository": {
     "type": "git",
-    "url": "sebj/copy-paste-cli",
+    "url": "sebj/copy-paste-cli"
   },
   "keywords": [
     "cli",
     "cli-app",
     "clipboard",
     "copy-paste",
-    "copy"
+    "copy",
+    "paste",
+    "copy and paste"
   ],
   "bin": {
     "copy-paste": "index.js"
