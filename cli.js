@@ -9,7 +9,7 @@ var copy = (stdin) => {
 	const toCopy = stdin || cli.args[0];
 
 	if (typeof toCopy === 'undefined') {
-		cli.fatal(chalk.red("No text supplied"));
+		cli.fatal(chalk.red("Missing <text> to copy"));
 
 	} else {
 		clipboard.copy(toCopy, () => {
@@ -24,16 +24,17 @@ var paste = () => {
 	cli.exit();
 };
 
-cli
-.enable('version')
-.setApp('./package.json')
-.parse(null, ['copy', 'paste']);
+const commands = ['copy', 'paste'];
+
+cli.enable('version')
+	.setApp(__dirname+'/package.json')
+	.parse(null, commands);
 
 cli.withStdin(stdin => {
 	copy(stdin);
 });
 
-if (cli.command == 'paste') {
+if (cli.command == commands[1]) {
 	paste();
 
 } else if (process.stdin.isTTY) {

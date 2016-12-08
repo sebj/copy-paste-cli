@@ -18,11 +18,11 @@
     "copy and paste"
   ],
   "bin": {
-    "copy-paste": "index.js"
+    "copy-paste": "cli.js"
   },
   "dependencies": {
     "chalk": "latest",
-    "cli": "latest",
+    "cli": "https://github.com/sebj/cli/tarball/master",
     "copy-paste": "latest",
     "log-symbols": "latest"
   }
