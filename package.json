@@ -21,10 +21,9 @@
     "copy-paste": "index.js"
   },
   "dependencies": {
-    "copy-paste": "latest",
     "chalk": "latest",
-    "commander": "latest",
-    "get-stdin": "latest",
+    "cli": "latest",
+    "copy-paste": "latest",
     "log-symbols": "latest"
   }
 }

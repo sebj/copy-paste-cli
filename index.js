@@ -1,58 +1,41 @@
 #!/usr/bin/env node
 'use strict';
 const chalk = require('chalk');
+const cli = require('cli');
 const clipboard = require('copy-paste');
-const cli = require('commander');
-const getStdin = require('get-stdin');
 const symbols = require('log-symbols');
 
-var stdin = '';
-
-//CLI
-cli
-.version('1.0.0')
-.on('--help', function() {
-	console.log('  Examples:');
-	console.log();
-	console.log('    $ copy-paste copy \"Lorem ipsum\"');
-	console.log('    $ cat foo.txt | copy-paste copy');
-	console.log('    $ copy-paste paste');
-	console.log();
-});
-
-//Copy:`c`, or `copy`
-cli.command('copy [text]')
-.alias('c')
-.description('Copy text to system clipboard')
-.action(text => {
-	const toCopy = stdin || text;
+var copy = (stdin) => {
+	const toCopy = stdin || cli.args[0];
 
 	if (typeof toCopy === 'undefined') {
-		console.error(chalk.red("No text supplied"));
-		process.exit(1);
+		cli.fatal(chalk.red("No text supplied"));
+
+	} else {
+		clipboard.copy(toCopy, () => {
+			cli.output(chalk.green(symbols.success, "Copied to clipboard"));
+			cli.exit()
+		});
 	}
+};
 
-	clipboard.copy(toCopy, () => {
-		console.log(chalk.green(symbols.success, "Copied to clipboard"));
-	});
+var paste = () => {
+	cli.output(clipboard.paste());
+	cli.exit();
+};
+
+cli
+.enable('version')
+.setApp('./package.json')
+.parse(null, ['copy', 'paste']);
+
+cli.withStdin(stdin => {
+	copy(stdin);
 });
 
-//Paste: `p`, or `paste`
-cli.command('paste')
-.alias('p')
-.description('Output contents of system clipboard')
-.action(() => {
-	console.log(clipboard.paste());
-});
+if (cli.command == 'paste') {
+	paste();
 
-
-//Allow input to be piped in
-if (process.stdin.isTTY) {
-	cli.parse(process.argv);
-
-} else {
-	getStdin().then(str => {
-		stdin = str;
-		cli.parse(process.argv);
-	});
+} else if (process.stdin.isTTY) {
+	copy(null);
 }
