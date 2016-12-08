@@ -1,6 +1,6 @@
 {
   "name": "copy-paste-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cross-platform command-line tool for copy/paste via the system clipboard.",
   "license": "MIT",
   "author": "Sebastian Jachec",
