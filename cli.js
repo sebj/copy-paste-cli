@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 'use strict';
+const path = require('path');
 const chalk = require('chalk');
 const cli = require('cli');
 const clipboard = require('copy-paste');
@@ -27,14 +28,14 @@ var paste = () => {
 const commands = ['copy', 'paste'];
 
 cli.enable('version')
-	.setApp(__dirname+'/package.json')
+	.setApp(path.join(__dirname,'/package.json'))
 	.parse(null, commands);
 
 cli.withStdin(stdin => {
 	copy(stdin);
 });
 
-if (cli.command == commands[1]) {
+if (cli.command === commands[1]) {
 	paste();
 
 } else if (process.stdin.isTTY) {
