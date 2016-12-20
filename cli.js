@@ -8,7 +8,7 @@ const symbols = require('log-symbols');
 
 const exec = require('child_process').exec;
 
-var copy = (stdin) => {
+const copy = (stdin) => {
 	const toCopy = stdin || cli.args[0];
 
 	if (typeof toCopy === 'undefined') {
@@ -25,7 +25,7 @@ var copy = (stdin) => {
 	}
 };
 
-var paste = () => {
+const paste = () => {
 	cli.output(clipboard.paste());
 	cli.exit();
 };
