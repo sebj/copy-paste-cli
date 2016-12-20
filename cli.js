@@ -6,6 +6,8 @@ const cli = require('cli');
 const clipboard = require('copy-paste');
 const symbols = require('log-symbols');
 
+const exec = require('child_process').exec;
+
 var copy = (stdin) => {
 	const toCopy = stdin || cli.args[0];
 
@@ -15,6 +17,9 @@ var copy = (stdin) => {
 	} else {
 		clipboard.copy(toCopy, () => {
 			cli.output(chalk.green(symbols.success, "Copied to clipboard"));
+
+			if (process.platform === 'darwin') exec("afplay /System/Library/Sounds/Pop.aiff -v .6");
+
 			cli.exit()
 		});
 	}
